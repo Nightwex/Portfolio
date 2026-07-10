@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slyzkoukhyi Maksym - Resume</title>
+    <!-- Підключення шрифтів Montserrat та Inter для максимальної схожості -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-navy: #112446;
+            --accent-blue: #3b82f6;
+            --text-dark: #1f2937;
+            --text-gray: #4b5563;
+            --light-gray: #f1f5f9;
+            --border-color: #cbd5e1;
+            --dot-active: #1d4ed8;
+            --dot-empty: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: var(--text-dark);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        /* Контейнер формату А4 */
+        .resume-container {
+            background-color: #ffffff;
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            display: grid;
+            grid-template-columns: 65% 30%;
+            column-gap: 5%;
+        }
+
+        /* Ліва колонка */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Права колонка */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Заголовок імені та посади */
+        header {
+            margin-bottom: 25px;
+        }
+
+        .name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary-navy);
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--accent-blue);
+        }
+
+        /* Секції лівої колонки */
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+        }
+
+        .summary-text {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: var(--text-gray);
+            text-align: justify;
+        }
+
+        /* Елементи досвіду та освіти */
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .item-title-group {
+            max-width: 65%;
+        }
+
+        .item-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        .item-sub {
+            font-size: 13.5px;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-top: 3px;
+        }
+
+        .item-sub-degree {
+            font-weight: 400;
+            color: var(--text-gray);
+        }
+
+        .item-meta {
+            text-align: right;
+            font-size: 12.5px;
+            color: var(--text-gray);
+            line-height: 1.4;
+        }
+
+        .item-date {
+            font-weight: 600;
+        }
+        /* Стилі для сертифікатів */
+        .cert-item {
+            margin-top: 12px;
+        }
+        .cert-item:first-of-type {
+            margin-top: 10px;
+        }
+        .cert-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 2px;
+            line-height: 1.3;
+        }
+        .cert-desc {
+            font-size: 12px;
+            line-height: 1.5;
+            color: var(--text-gray);
+        }
+
+        /* Списки */
+        .bullet-list {
+            padding-left: 18px;
+            color: var(--text-gray);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .bullet-list li {
+            margin-bottom: 8px;
+        }
+
+        .bullet-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Фотографія */
+        .photo-wrapper {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: var(--light-gray);
+            margin-bottom: 30px;
+        }
+
+        .photo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Контакти */
+        .contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-blue);
+        }
+
+        .contact-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-navy);
+            flex-shrink: 0;
+        }
+
+        .contact-icon svg {
+            width: 15px;
+            height: 15px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        /* Навички в капсулах */
+        .skills-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .skill-capsule {
+            background-color: var(--light-gray);
+            border-radius: 20px;
+            padding: 8px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-name {
+            font-size: 12.5px;
+            font-weight: 500;
+            color: var(--primary-navy);
+        }
+
+        /* Крапки оцінювання */
+        .dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--dot-empty);
+        }
+
+        .dot.active {
+            background-color: var(--dot-active);
+        }
+
+        /* Мови */
+        .languages-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .lang-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lang-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lang-name {
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .lang-level {
+            font-size: 11px;
+            color: var(--text-gray);
+            margin-top: 2px;
+        }
+
+        /* Сертифікати */
+        .cert-text {
+            font-size: 12.5px;
+            line-height: 1.5;
+            color: var(--text-gray);
+            margin-top: 10px;
+        }
+
+        /* Налаштування для друку */
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+                margin: 0;
+            }
+
+            .resume-container {
+                box-shadow: none;
+                padding: 15mm; /* Оптимальні поля для друку */
+                width: 100%;
+                min-height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="resume-container">
+        
+        <!-- Ліва колонка -->
+        <div class="left-column">
+            
+            <header>
+                <h1 class="name">Slyzkoukhyi Maksym</h1>
+                <div class="subtitle">Junior Full-Stack JavaScript Developer</div>
+            </header>
+
+            <section class="section">
+                <h2 class="section-title">Summary</h2>
+                <p class="summary-text">
+                    Junior JavaScript Full-Stack Developer with practical experience gained through a commercial internship and personal projects. During my internship, I worked with Express.js, backend data modeling, object relationships, and technical documentation while learning to replicate the business logic of existing 1C/BAS solutions. I have hands-on experience with Node.js, Express.js, SQL, and REST APIs, alongside foundational experience with React and continue to expand my backend development skills. Eager to contribute to a collaborative team and grow as a backend developer by building reliable and maintainable software solutions.
+                </p>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div class="item-title-group">
+                            <h3 class="item-title">Junior JavaScript Backend Developer (Intern)</h3>
+                            <div class="item-sub">Axioma Audit</div>
+                        </div>
+                        <div class="item-meta">
+                            <div class="item-date">May 2026 - Jul 2026</div>
+                            <div class="item-loc">Vinnytsia, UA, Ukraine</div>
+                        </div>
+                    </div>
+                    <ul class="bullet-list">
+                        <li>Developed a JavaScript-based configuration designed to replicate the functionality and business logic of an existing 1C/BAS solution.</li>
+                        <li>Designed and implemented backend object relationships and data models for an existing BAS configuration.</li>
+                        <li>Created and maintained technical documentation describing object structures, relationships, and system architecture.</li>
+                        <li>Completed a full-stack development internship and training program, gaining practical experience with modern web development technologies.</li>
+                        <li>Worked with Docker to set up and manage development environments and application containers.</li>
+                        <li>Interacted with relational databases, including designing, modifying, and querying data structures to support backend functionality.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Education</h2>
+                
+                <div class="education-item">
+                    <div class="item-header">
+                        <div class="item-title-group">
+                            <h3 class="item-title">Computer Science <span class="item-sub-degree">- Bachelor of Science (BS)</span></h3>
+                            <div class="item-sub">Vinnytsia National Technical University</div>
+                        </div>
+                        <div class="item-meta">
+                            <div class="item-date">2024 - 2028</div>
+                            <div class="item-loc">Vinnytsia, Ukraine</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Accomplishments</h2>
+                <ul class="bullet-list">
+                    <li>Completed an internship in a real commercial project environment, gaining hands-on experience with backend development technologies and software development processes.</li>
+                    <li>Developed skills in data modeling, system analysis, and technical documentation while working with enterprise solutions.</li>
+                    <li>Authored 5 scientific conference theses at VNTU, presenting research results and improving analytical skills.</li>
+                    <li>Created a website "Idea-lab 2.0" for the Youth Council project using HTML, CSS, JavaScript.</li>
+                    <li>Developed a full-stack course project "Productivity Tracker" for task and productivity management using Node.js, Express.js, MongoDB, and REST APIs. </li>
+                </ul>
+            </section>
+
+        </div>
+
+        <!-- Права колонка -->
+        <div class="right-column">
+            
+            <!-- Контейнер для вашої фотографії -->
+            <div class="photo-wrapper">
+                <img src="photo.jpg" alt="Slyzkoukhyi Maksym">
+            </div>
+
+            <section class="section">
+                <h2 class="section-title">Contact Info</h2>
+                <ul class="contact-list">
+                    <li class="contact-item">
+                        <span class="contact-icon">
+                            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </span>
+                        +380 689308664
+                    </li>
+                    <li class="contact-item">
+                        <span class="contact-icon">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </span>
+                        <a href="mailto:Slizkoyxiumaks@gmail.com">Slizkoyxiumaks@gmail.com</a>
+                    </li>
+                    <li class="contact-item">
+                        <span class="contact-icon">
+                            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        </span>
+                        <a href="https://github.com/Nightwex" target="_blank" rel="noopener noreferrer">github.com/Nightwex</a>
+                    </li>
+                    <li class="contact-item">
+                        <span class="contact-icon">
+                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </span>
+                        Vinnytsia, UA, Ukraine
+                    </li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Skills</h2>
+                <div class="skills-container">
+                    
+                    <!-- SQL (3/5) -->
+                    <div class="skill-capsule">
+                        <span class="skill-name">SQL</span>
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+
+                    <!-- React (2/5) -->
+                    <div class="skill-capsule">
+                        <span class="skill-name">React</span>
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+
+                    <!-- Data Modeling (2/5) -->
+                    <div class="skill-capsule">
+                        <span class="skill-name">Data Modeling</span>
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+
+                    <!-- MongoDB (3/5) -->
+                    <div class="skill-capsule">
+                        <span class="skill-name">MongoDB</span>
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+
+                    <!-- RESTful APIs (3/5) -->
+                    <div class="skill-capsule">
+                        <span class="skill-name">RESTful APIs</span>
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+
+                    <!-- Express.js (4/5) -->
+                    <div class="skill-capsule">
+                        <span class="skill-name">Express.js</span>
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+
+                    <!-- Node.js (3/5) -->
+                    <div class="skill-capsule">
+                        <span class="skill-name">Node.js</span>
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+
+                    <!-- JavaScript (4/5) -->
+                    <div class="skill-capsule">
+                        <span class="skill-name">JavaScript</span>
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Languages</h2>
+                <div class="languages-container">
+                    
+                    <div class="lang-item">
+                        <div class="lang-info">
+                            <span class="lang-name">Ukrainian</span>
+                            <span class="lang-level">Native</span>
+                        </div>
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                        </div>
+                    </div>
+
+                    <div class="lang-item">
+                        <div class="lang-info">
+                            <span class="lang-name">English</span>
+                            <span class="lang-level">Intermediate</span>
+                        </div>
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Certifications</h2>
+                
+                <!-- Перший сертифікат -->
+                <div class="cert-item">
+                    <div class="cert-title">Full-Stack Development Training (Internship Program)</div>
+                    <div class="cert-desc">
+                        Practical training focused on JavaScript, backend development, databases, React and modern web technologies.
+                    </div>
+                </div>
+
+                <!-- Другий сертифікат від EPAM -->
+                <div class="cert-item">
+                    <div class="cert-title">[Beginner] Automated Testing in JavaScript</div>
+                    <div class="cert-desc">
+                        EPAM — foundational course covering the basics of automated testing, writing test scripts, and QA concepts in the JavaScript ecosystem.
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
